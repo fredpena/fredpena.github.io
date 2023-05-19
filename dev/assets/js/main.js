@@ -125,9 +125,17 @@
             }
         }
         // Calcular y mostrar la edad actual
-        const birthday = new Date(1989, 10, 4); // Fecha de nacimiento: 4 de noviembre de 1989
-        const age = calculateAge(birthday);
-        document.getElementById("current-age").textContent = age;
+        const birthday = new Date(1989, 10, 4);
+        document.getElementById("current-age").textContent = calculateAge(birthday);
+
+        const java = new Date(2011, 0, 1);
+        document.getElementById("java-age").textContent = calculateAge(java);
+
+        const python = new Date(2018, 0, 1);
+        document.getElementById("python-age").textContent = calculateAge(python);
+
+        const sap = new Date(2017, 0, 1);
+        document.getElementById("sap-age").textContent = calculateAge(sap);
 
         // Función para calcular la edad
         function calculateAge(birthday) {
