@@ -107,16 +107,26 @@ h6 {
 }
 
 #header .profile h2 {
-  font-size: 12px;
-  margin: 0;
+  font-size: 16px;
+  margin: 10 px;
   padding: 0;
-  font-weight: 600;
-  -moz-text-align-last: center;
-  text-align-last: center;
-  font-family: "Poppins", sans-serif;
+  font-weight: 1000;
+  -moz-text-align-last: left;
+  text-align-last: left;
+  font-family: "Roboto", sans-serif;
+  color: #7d8590 !important;
+  padding-left: 25px;
 }
 
 
+#header .profile h2 a {
+  color: #7d8590;
+  text-decoration: none;
+}
+
+#header .profile h2 a:hover {
+  color: #149ddd;
+}
 
 #header .profile .social-links a {
   font-size: 18px;

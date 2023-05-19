@@ -144,7 +144,29 @@
             const ageDate = new Date(diff);
             return ageDate.getUTCFullYear() - 1970;
         }
+
     });
+
+    /**
+     * Show local time in real time with specified time zone and custom format
+     * @param {string} timeZone - Time zone identifier, e.g., 'America/Santo_Domingo'
+     */
+    function showLocalTime(timeZone) {
+        const localTime = document.getElementById("local-time");
+        const options = { timeZone: timeZone, timeStyle: 'short', hour12: true }
+
+        function updateTime() {
+            const currentDate = new Date();
+            const formattedTime = currentDate.toLocaleTimeString('en-US', options);
+
+            localTime.textContent = formattedTime;
+        }
+
+        // Updates the clock every second
+        setInterval(updateTime, 1000);
+    }
+    // Call the function and pass the desired time zone as an argument
+    showLocalTime('America/Santo_Domingo');
 
     /**
      * Hero type effect
