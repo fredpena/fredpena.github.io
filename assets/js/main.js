@@ -145,7 +145,26 @@
             return ageDate.getUTCFullYear() - 1970;
         }
 
+
     });
+
+    // Co-founder of Alphnology | Java Developer | Penchant for Python | Learning with every step | I❤️☕🐍💻
+    const titles = [
+        "Freddy Peña",
+        "Java Developer ☕",
+        "Co-founder of Alphnology 🏢",
+        "Software Engineering 💻",
+        "Penchant for Python 🐍",
+        "Learning with every step 📝"
+    ];
+
+    let titleIndex = 0;
+    document.title = titles[titleIndex];
+
+    setInterval(() => {
+        titleIndex = (titleIndex + 1) % titles.length;
+        document.title = titles[titleIndex];
+    }, 3000);
 
     /**
      * Show local time in real time with specified time zone and custom format
@@ -153,7 +172,7 @@
      */
     function showLocalTime(timeZone) {
         const localTime = document.getElementById("local-time");
-        const options = { timeZone: timeZone, timeStyle: 'short', hour12: true }
+        const options = {timeZone: timeZone, timeStyle: 'short', hour12: true}
 
         function updateTime() {
             const currentDate = new Date();
@@ -165,6 +184,7 @@
         // Updates the clock every second
         setInterval(updateTime, 1000);
     }
+
     // Call the function and pass the desired time zone as an argument
     showLocalTime('America/Santo_Domingo');
 
