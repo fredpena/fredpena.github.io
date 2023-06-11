@@ -1,0 +1,14 @@
+
+E	php:S1808"0Remove all space before the closing parenthesis.(×Ş§É
+D	php:S1808"/Remove all space after the opening parenthesis.(×Ş§É
+g	php:S1808"RRemove all space after the opening parenthesis and before the closing parenthesis.(¤ºşã
+D	php:S1808"/Remove all space after the opening parenthesis.(æ’‡ô
+I	php:S1808$"/Remove all space after the opening parenthesis.(öŠŒ±ÿÿÿÿÿ
+I	php:S1808%"/Remove all space after the opening parenthesis.(Ó®˜Åøÿÿÿÿ
+I	php:S1808&"/Remove all space after the opening parenthesis.(ÚåˆÇşÿÿÿÿ
+Y	php:S1808"DPut one space between this "if" keyword and the opening parenthesis.(×Ş§É
+7	php:S1780)"Remove this closing tag "?>".(Ö‘äÏúÿÿÿÿ
+_	php:S1779"RReplace all non line feed end of line characters in this file "contact.php" by LF.
+;	php:S2003"&Replace "include" with "include_once".(¤ºşã
+3php:S125"Remove this commented out code.(–±Ù
+a	php:S4833"LReplace "include" with namespace import mechanism through the "use" keyword.(¤ºşã
