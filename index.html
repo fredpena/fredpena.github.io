@@ -1009,19 +1009,20 @@
                                 <div class="form-group col-md-12">
                                     <input type="text" name="name" class="form-control" id="name"
                                         placeholder="Your Name" required>
+
                                 </div>
 
                                 <div class="form-group col-md-12">
-                                    <input type="text" name="phone-number" class="form-control"
-                                        id="phone-number" placeholder="Phone Number">
+                                    <input type="text" name="phone-number" class="form-control" id="phone-number"
+                                        placeholder="Phone Number">
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <input type="email"  class="form-control" name="email"
-                                        id="email" placeholder="Email" required>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email"
+                                        required>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <input type="text"  class="form-control" name="subject"
-                                        id="subject" placeholder="Subject" required>
+                                    <input type="text" class="form-control" name="subject" id="subject"
+                                        placeholder="Subject" required>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <textarea class="form-control" name="message" id="message" rows="6"
@@ -1034,90 +1035,91 @@
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" onclick="sendEmail(event)">Send Message</button>
+                                    <button type="submit">Send Message</button>
                                     <button type="reset">Reset</button>
                                 </div>
 
-                            </form>
 
-                            <script type="text/javascript">
-                                function sendEmail(event) {
-                                    event.preventDefault(); // Prevent form submission
+                                <script type="text/javascript">
 
-                                    console.log('sendEmail...')
+                                    document.forms['contact-form'].addEventListener('submit', (event) => {
+                                        event.preventDefault(); // Prevent form submission
 
-                                    var loading = document.getElementById('loading');
-                                    var errorMessage = document.getElementById('error-message');
-                                    var sentMessage = document.getElementById('sent-message');
+                                        var loading = document.getElementById('loading');
+                                        var errorMessage = document.getElementById('error-message');
+                                        var sentMessage = document.getElementById('sent-message');
 
 
-                                    // // Get form field values
-                                    var name = document.getElementById('name').value;
-                                    var phoneNumber = document.getElementById('phone-number').value;
-                                    var email = document.getElementById('email').value;
-                                    var subject = document.getElementById('subject').value;
-                                    var message = document.getElementById('message').value;
+                                        // // Get form field values
+                                        var name = document.getElementById('name').value;
+                                        var phoneNumber = document.getElementById('phone-number').value;
+                                        var email = document.getElementById('email').value;
+                                        var subject = document.getElementById('subject').value;
+                                        var message = document.getElementById('message').value;
 
-                                    var content =
-                                        `<div class="email-container">
-                                            <h3>Feedback</h3>
-                                            <p>Dear Fred Pena,</p>
-                                            <p>Here is some comments I would like to share:</p>
-                                            <ul class="detail-list">
-                                                <li><strong>Name:</strong> `+ name + `</li>
-                                                <li><strong>Phone number:</strong> `+ phoneNumber + `</li>
-                                                <li><strong>Email:</strong> `+ email + `</li>
-                                            </ul>
-                                            <p>` + message + `</p>
-                                        </div>`
+                                        var content =
+                                            `<div class="email-container">
+                                                <h3>Feedback</h3>
+                                                <p>Dear Fred Pena,</p>
+                                                <p>Here is some comments I would like to share:</p>
+                                                <ul class="detail-list">
+                                                    <li><strong>Name:</strong> `+ name + `</li>
+                                                    <li><strong>Phone number:</strong> `+ phoneNumber + `</li>
+                                                    <li><strong>Email:</strong> `+ email + `</li>
+                                                </ul>
+                                                <p>` + message + `</p>
+                                            </div>`
 
-                                    var myHeaders = new Headers();
-                                    myHeaders.append("Content-Type", "application/json");
+                                        var myHeaders = new Headers();
+                                        myHeaders.append("Content-Type", "application/json");
 
-                                    var raw = JSON.stringify({
-                                        "subject": subject,
-                                        "content": content,
-                                        "source": "FRED"
-                                    });
-
-                                    var requestOptions = {
-                                        method: 'POST',
-                                        headers: myHeaders,
-                                        body: raw,
-                                        redirect: 'follow'
-                                    };
-
-                                    fetch("https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-9054e4b1-918f-409d-9681-dddcf57a2dff/functions/emails", requestOptions)
-                                        .then((resp) => {
-                                            loading.style.display = 'none';
-
-                                            setTimeout(function () {
-                                                sentMessage.style.display = 'none';
-                                                errorMessage.style.display = 'none';
-                                            }, 3000);
-
-                                            if (resp.status === 202) {
-                                                sentMessage.style.display = 'block';
-                                            } else {
-                                                errorMessage.style.display = 'block';
-                                            }
-
-                                            return resp.text(); // or resp.text() or whatever the server sends
-                                        }).then((body) => {
-                                            // TODO handle body
-                                        }).catch((e) => {
-                                            loading.style.display = 'none';
-                                            errorMessage.style.display = 'block';
-
-                                            setTimeout(function () {
-                                                errorMessage.style.display = 'none';
-                                            }, 3000);
-
-                                            // TODO handle error
+                                        var raw = JSON.stringify({
+                                            "subject": subject,
+                                            "content": content,
+                                            "source": "FRED"
                                         });
 
-                                }
-                            </script>
+                                        var requestOptions = {
+                                            method: 'POST',
+                                            headers: myHeaders,
+                                            body: raw,
+                                            redirect: 'follow'
+                                        };
+
+                                        fetch("https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-9054e4b1-918f-409d-9681-dddcf57a2dff/functions/emails", requestOptions)
+                                            .then((resp) => {
+                                                loading.style.display = 'none';
+
+                                                setTimeout(function () {
+                                                    sentMessage.style.display = 'none';
+                                                    errorMessage.style.display = 'none';
+                                                }, 3000);
+
+                                                if (resp.status === 202) {
+                                                    sentMessage.style.display = 'block';
+                                                } else {
+                                                    errorMessage.style.display = 'block';
+                                                }
+
+                                                return resp.text(); // or resp.text() or whatever the server sends
+                                            }).then((body) => {
+                                                // TODO handle body
+                                            }).catch((e) => {
+                                                loading.style.display = 'none';
+                                                errorMessage.style.display = 'block';
+
+                                                setTimeout(function () {
+                                                    errorMessage.style.display = 'none';
+                                                }, 3000);
+
+                                                // TODO handle error
+                                            });
+                                    });
+
+
+                                </script>
+                            </form>
+
                         </div>
 
                     </div>
