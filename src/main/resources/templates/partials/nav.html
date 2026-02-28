@@ -1,0 +1,28 @@
+<header class="header">
+    <div class="container">
+        <div class="header-inner">
+            <a href="{site.data.getString('basePath') ?: ''}/" class="logo">
+                <span class="logo-icon">FP</span>
+                <span>fredpena.dev</span>
+            </a>
+
+            <nav class="nav" id="main-nav">
+                <a href="{site.data.getString('basePath') ?: ''}/" class="nav-link">Home</a>
+                <a href="{site.data.getString('basePath') ?: ''}/blog" class="nav-link">Blog</a>
+                <a href="{site.data.getString('basePath') ?: ''}/#proof" class="nav-link">Proof of Work</a>
+                <a href="{site.data.getString('basePath') ?: ''}/#about" class="nav-link">About</a>
+                <a href="{site.data.getString('basePath') ?: ''}/#contact" class="btn btn-primary">Lets Talk</a>
+            </nav>
+
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" data-label-light="Light Mode" data-label-dark="Dark Mode">
+                Dark Mode
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+</header>

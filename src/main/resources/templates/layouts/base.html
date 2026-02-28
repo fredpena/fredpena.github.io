@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="{site.data.getString('language') ?: 'en'}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{page.description ?: site.description}">
+    <meta name="author" content="{site.data.getString('author') ?: 'Fred Pena'}">
+    <meta name="keywords" content="{site.data.getString('keywords')}">
+
+    <title>{#if page.title}{page.title} | {/if}{site.title}</title>
+
+    <link rel="canonical" href="{site.url}{page.url ?: '/'}">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{page.title ?: site.title}">
+    <meta property="og:description" content="{page.description ?: site.description}">
+    <meta property="og:type" content="{page.data('type') ?: 'website'}">
+    <meta property="og:url" content="{site.url}{page.url ?: '/'}">
+    <meta property="og:image" content="{page.image ?: site.image}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{page.title ?: site.title}">
+    <meta name="twitter:description" content="{page.description ?: site.description}">
+    <meta name="twitter:image" content="{page.image ?: site.image}">
+    <meta name="twitter:creator" content="{site.data.getString('twitter')}">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{site.data.getString('basePath') ?: ''}/assets/css/design-system.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark-dimmed.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{site.data.getString('basePath') ?: ''}/assets/images/favicon.svg">
+
+    <meta name="theme-color" content="#0b0d10">
+</head>
+<body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    {#include partials/nav.html /}
+
+    <main id="content">
+        {#insert /}
+    </main>
+
+    {#include partials/newsletter.html /}
+    {#include partials/footer.html /}
+
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/lib/highlight.min.js"></script>
+    <script>
+        (function() {
+            var blocks = document.querySelectorAll('pre code');
+            if (window.hljs && blocks.length) {
+                blocks.forEach(function(block) {
+                    window.hljs.highlightElement(block);
+                });
+            }
+        })();
+
+        (function() {
+            var mobileToggle = document.getElementById('mobile-menu-toggle');
+            var mainNav = document.getElementById('main-nav');
+            if (!mobileToggle || !mainNav) return;
+            mobileToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+            });
+        })();
+
+        (function() {
+            var root = document.documentElement;
+            var toggle = document.getElementById('theme-toggle');
+            if (!toggle) return;
+            var stored = null;
+            try {
+                stored = localStorage.getItem('theme');
+            } catch (err) {
+                stored = null;
+            }
+            var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+            var theme = stored || (prefersLight ? 'light' : 'dark');
+
+            function applyTheme(value) {
+                root.setAttribute('data-theme', value);
+                var isLight = value === 'light';
+                toggle.setAttribute('aria-pressed', String(isLight));
+                var labelDark = toggle.getAttribute('data-label-dark') || 'Dark mode';
+                var labelLight = toggle.getAttribute('data-label-light') || 'Light mode';
+                toggle.textContent = isLight ? labelDark : labelLight;
+            }
+
+            applyTheme(theme);
+
+            toggle.addEventListener('click', function() {
+                var current = root.getAttribute('data-theme') || 'dark';
+                var next = current === 'light' ? 'dark' : 'light';
+                try {
+                    localStorage.setItem('theme', next);
+                } catch (err) {
+                    // Ignore storage errors.
+                }
+                applyTheme(next);
+            });
+        })();
+
+        (function() {
+            var yearEl = document.getElementById('current-year');
+            if (yearEl) {
+                yearEl.textContent = new Date().getFullYear();
+            }
+        })();
+
+        (function() {
+            document.querySelectorAll('[data-dialog-open]').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var target = button.getAttribute('data-dialog-open');
+                    if (!target) return;
+                    var dialog = document.getElementById(target);
+                    if (!dialog) return;
+                    if (dialog.showModal) {
+                        dialog.showModal();
+                    } else {
+                        dialog.setAttribute('open', 'open');
+                    }
+                });
+            });
+
+            document.querySelectorAll('[data-dialog-close]').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var dialog = button.closest('dialog');
+                    if (!dialog) return;
+                    if (dialog.close) {
+                        dialog.close();
+                    } else {
+                        dialog.removeAttribute('open');
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+site:
+  title: "fredpena.dev"
+  tagline: "Senior Java Software Engineer | Software Architect | DevOps Engineer | Vaadin Champion"
+  description: "Personal website and blog focused on Java, architecture, DevOps, and platform engineering leadership."
+  url: "https://fredpena.dev"
+  image: "og-default.svg"
+  data:
+    language: "en"
+    author: "Fred Pena"
+    basePath: ""
+    keywords: "Java, Spring Boot, Architecture, DevOps, Cloud, Vaadin, Middleware, SAP Business One"
+    twitter: "@fred_pena"
+
+build:
+  output_dir: "_site"
+
+collections:
+  posts:
+    output: true
+    permalink: "/blog/:slug/"
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "base"
