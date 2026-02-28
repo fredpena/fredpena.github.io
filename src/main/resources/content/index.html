@@ -238,40 +238,40 @@ layout: "base"
         <h2 class="section-title">Featured Posts</h2>
         <p class="section-subtitle">Practical ideas for technical leaders and high-performing teams.</p>
         <div class="post-grid">
-            {#if site.collections.get('posts')}
-                {#for post in site.collections.get('posts')}
-                    {#if post_index < 8}
-                        <article class="post-card anim-fade-up anim-delay-1">
-                            <div class="post-card-image">
-                                <img src="{post.image ?: site.image}" alt="{post.title}">
-                            </div>
-                            <div class="post-card-body">
-                                <div class="post-meta">
-                                    <span>{post.date}</span>
-                                    <span>
-                                        {#if post.data.getJsonArray('tags')}
-                                            {#for tag in post.data.getJsonArray('tags')}
-                                                {tag}{#if tag_hasNext}, {/if}
-                                            {/for}
-                                        {/if}
-                                    </span>
-                                </div>
-                                <h3>{post.title}</h3>
-                                <p>{post.description}</p>
-                                <a href="{post.url}">Read article &rarr;</a>
-                            </div>
-                        </article>
-                    {/if}
-                {/for}
-            {#else}
-                <article class="post-card">
-                    <div class="post-meta">
-                        <span>Coming soon</span>
-                    </div>
-                    <h3>First posts on the way</h3>
-                    <p>This space will fill with insights on architecture, technical leadership, and Vaadin.</p>
-                </article>
-            {/if}
+<!--            {#if site.collections.get('posts')}-->
+<!--                {#for post in site.collections.get('posts')}-->
+<!--                    {#if post_index < 8}-->
+<!--                        <article class="post-card anim-fade-up anim-delay-1">-->
+<!--                            <div class="post-card-image">-->
+<!--                                <img src="{post.image ?: site.image}" alt="{post.title}">-->
+<!--                            </div>-->
+<!--                            <div class="post-card-body">-->
+<!--                                <div class="post-meta">-->
+<!--                                    <span>{post.date}</span>-->
+<!--                                    <span>-->
+<!--                                        {#if post.data.getJsonArray('tags')}-->
+<!--                                            {#for tag in post.data.getJsonArray('tags')}-->
+<!--                                                {tag}{#if tag_hasNext}, {/if}-->
+<!--                                            {/for}-->
+<!--                                        {/if}-->
+<!--                                    </span>-->
+<!--                                </div>-->
+<!--                                <h3>{post.title}</h3>-->
+<!--                                <p>{post.description}</p>-->
+<!--                                <a href="{post.url}">Read article &rarr;</a>-->
+<!--                            </div>-->
+<!--                        </article>-->
+<!--                    {/if}-->
+<!--                {/for}-->
+<!--            {#else}-->
+<!--                <article class="post-card">-->
+<!--                    <div class="post-meta">-->
+<!--                        <span>Coming soon</span>-->
+<!--                    </div>-->
+<!--                    <h3>First posts on the way</h3>-->
+<!--                    <p>This space will fill with insights on architecture, technical leadership, and Vaadin.</p>-->
+<!--                </article>-->
+<!--            {/if}-->
         </div>
     </div>
 </section>
